@@ -1,6 +1,6 @@
 "use client"
 
-import { allProjects, Project } from "@/.contentlayer/generated";
+import { allProjects, Project } from "contentlayer/generated";
 import CardProject from "./CardProject";
 
 const Featured = () => {

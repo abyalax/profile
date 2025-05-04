@@ -1,6 +1,6 @@
 "use client";
 
-import { Project } from "@/.contentlayer/generated";
+import { Project } from "contentlayer/generated";
 import Image from "next/image"
 import { useRouter } from "next/navigation";
 

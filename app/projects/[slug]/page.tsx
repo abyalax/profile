@@ -1,4 +1,4 @@
-import { allProjects, Project } from "@/.contentlayer/generated"
+import { allProjects, Project } from "contentlayer/generated"
 import { Suspense } from "react";
 import MDXContent from "@/components/ui/MdxContent";
 import { Date } from "@/components/ui/Date";

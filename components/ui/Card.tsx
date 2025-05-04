@@ -1,6 +1,6 @@
 "use client";
 
-import { Project } from "@/.contentlayer/generated";
+import { Project } from "contentlayer/generated";
 import { format } from "date-fns/format";
 import { parseISO } from "date-fns/parseISO";
 import Link from "next/link";

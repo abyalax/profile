@@ -1,4 +1,4 @@
-import { allBlogs } from "@/.contentlayer/generated"
+import { allBlogs } from "contentlayer/generated"
 import { Date } from "@/components/ui/Date"
 import MDXContent from "@/components/ui/MdxContent"
 import { Suspense } from "react"

@@ -1,4 +1,4 @@
-import { allProjects } from "@/.contentlayer/generated";
+import { allProjects } from "contentlayer/generated";
 import CardProject from "../fragments/CardProject";
 
 const ProjectPage = () => {

@@ -1,30 +1,8 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
-
-const Project = defineDocumentType(() => ({
-    name: 'Project',
-    filePathPattern: `projects/*.mdx`,
-    contentType: 'mdx',
-    fields: {
-        title: {
-            type: 'string',
-            description: 'The title of the project',
-            required: true,
-        },
-        date: {
-            type: 'date',
-            description: 'The date of the project',
-            required: true,
-        },
-    },
-    computedFields: {
-        url: {
-            type: 'string',
-            resolve: (doc) => `/contents/projects/${doc._raw.flattenedPath}`,
-        },
-    },
-}))
+import { makeSource } from 'contentlayer/source-files'
+import { Project } from './documents/project'
+import { Blog } from './documents/blog'
 
 export default makeSource({
     contentDirPath: 'contents',
-    documentTypes: [Project],
+    documentTypes: [Project, Blog],
 })

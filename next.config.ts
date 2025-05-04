@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
   },
-  experimental: {
-    allowDevelopmentBuild: true
-  },
 }
 
 export default withContentlayer(nextConfig)

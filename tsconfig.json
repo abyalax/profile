@@ -38,7 +38,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
-, "postcss.config.js", "tailwind.config.js"  ],
+, "postcss.config.js", "tailwind.config.js", "components/animations/text/split.jsx"  ],
   "exclude": [
     "node_modules"
   ]

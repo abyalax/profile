@@ -1,6 +1,7 @@
 import { allBlogs } from "contentlayer/generated"
-import { Date } from "@/components/ui/Date"
-import MDXContent from "@/components/ui/MdxContent"
+// import { Date } from "@/components/ui/Date"
+import { Date } from "../../../components/ui/Date"
+import MDXContent from "../../../components/ui/MdxContent"
 import { Suspense } from "react"
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

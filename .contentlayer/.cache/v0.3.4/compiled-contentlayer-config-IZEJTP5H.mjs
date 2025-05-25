@@ -3,6 +3,8 @@ import { makeSource } from "contentlayer/source-files";
 
 // documents/project.ts
 import { defineDocumentType } from "contentlayer/source-files";
+import path from "path";
+import fs from "fs";
 var Project = defineDocumentType(() => ({
   name: "Project",
   filePathPattern: `projects/*.mdx`,
@@ -55,7 +57,9 @@ var Project = defineDocumentType(() => ({
       type: "string",
       description: "The url image of the project",
       resolve: (doc) => {
-        return `/contentlayer/${doc._raw.flattenedPath}.png`;
+        const imagePath = path.join(process.cwd(), "public/contentlayer", `${doc._raw.flattenedPath}.png`);
+        const exists = fs.existsSync(imagePath);
+        return exists ? `/contentlayer/${doc._raw.flattenedPath}.png` : null;
       }
     }
   }
@@ -112,4 +116,4 @@ var contentlayer_config_default = makeSource({
 export {
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-PZQNJXD6.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-IZEJTP5H.mjs.map

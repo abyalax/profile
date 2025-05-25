@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
   return (
-    <section className="dark:text-gray-700 dark:bg-black text-gray-900 bg-slate-100">
+    <section className="dark:text-gray-700 dark:bg-[#0a0a0a] text-gray-900 bg-slate-100">
       <Navbar />
       <LandingPage />
     </section>

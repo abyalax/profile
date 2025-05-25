@@ -1,4 +1,6 @@
 import { defineDocumentType } from "contentlayer/source-files"
+import path from "path"
+import fs from "fs"
 
 export const Project = defineDocumentType(() => ({
     name: 'Project',
@@ -52,8 +54,11 @@ export const Project = defineDocumentType(() => ({
             type: 'string',
             description: 'The url image of the project',
             resolve: (doc) => {
-                return `/contentlayer/${doc._raw.flattenedPath}.png`
-            },
+                const imagePath = path.join(process.cwd(), 'public/contentlayer', `${doc._raw.flattenedPath}.png`)
+                const exists = fs.existsSync(imagePath)
+          
+                return exists ? `/contentlayer/${doc._raw.flattenedPath}.png` : null
+              },
         },
     },
 }))

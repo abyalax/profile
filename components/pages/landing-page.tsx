@@ -95,7 +95,7 @@ const LandingPage = () => {
     }, []);
 
     return (
-        <main className="dark:text-gray-700 dark:bg-black text-gray-900 bg-slate-100">
+        <main className="dark:text-gray-700 dark:bg-[#0a0a0a] text-gray-900 bg-slate-100">
 
             {/* Scroll to top */}
             <motion.a

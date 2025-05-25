@@ -11,6 +11,11 @@
   - [🏷️ `fields`](#️-fields)
   - [🧠 `computedFields`](#-computedfields)
   - [📦 `makeSource`](#-makesource)
+- [Deployment](#deployment)
+  - [📁 `vercel.json`](#-verceljson)
+  - [📦 `package.json` Scripts](#-packagejson-scripts)
+  - [⚙️ `next.config.ts`](#️-nextconfigts)
+  - [⚠️ Catatan Penting](#️-catatan-penting)
 
 
 ---
@@ -57,7 +62,7 @@ Setiap file `.mdx` di dalam folder `projects/` merepresentasikan satu entri proy
    npm run dev
    ```
 
-   Situs Next.js kamu sekarang bisa diakses di `http://localhost:3000`.
+   Situs Next.js bisa diakses di `http://localhost:3000`.
 
 ---
 
@@ -87,8 +92,8 @@ Untuk membangun project:
 
 ### 📚 Catatan Tambahan
 
-* Pastikan kamu sudah mengonfigurasi `contentlayer.config.ts` dan `next.config.js` sesuai dengan struktur folder `contents/projects`.
-* File `.mdx` kamu bisa menggunakan frontmatter YAML seperti:
+* Pastikan sudah mengonfigurasi `contentlayer.config.ts` dan `next.config.js` sesuai dengan struktur folder `contents/projects`.
+* File `.mdx` bisa menggunakan frontmatter YAML seperti:
 
   ```mdx
   ---
@@ -101,7 +106,7 @@ Untuk membangun project:
 
 ---
 
-Berikut penjelasan singkat untuk konfigurasi `contentlayer.config.ts` yang kamu tambahkan:
+Berikut penjelasan singkat untuk konfigurasi `contentlayer.config.ts` yang sudah ditambahkan:
 
 ---
 
@@ -181,3 +186,96 @@ export default makeSource({
 Dengan konfigurasi ini, Contentlayer akan membaca semua file `.mdx` di `contents/projects/`, mengekstrak metadata-nya (seperti `title` dan `date`), dan menyediakan data yang siap dipakai di halaman Next.js.
 
 ---
+
+## Deployment
+
+### 📁 `vercel.json`
+
+```json
+{
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "installCommand": "npm install --legacy-peer-deps"
+}
+```
+
+**Penjelasan:**
+
+* `installCommand`: Menghindari konflik peer dependencies saat instalasi package.
+* `NODE_ENV`: Memastikan environment yang digunakan adalah production.
+
+---
+
+### 📦 `package.json` Scripts
+
+```json
+"scripts": {
+  "dev": "next dev --turbopack",
+  "build": "npx contentlayer build && next build",
+  "start": "next start",
+  "lint": "next lint"
+}
+```
+
+**Penjelasan:**
+
+* `build`: Menjalankan `contentlayer` **sebelum** `next build` untuk memastikan direktori `.contentlayer/generated` selalu up to date.
+* Gunakan `npx` agar tidak perlu install global package.
+
+---
+
+### ⚙️ `next.config.ts`
+
+```ts
+import type { NextConfig } from "next"
+import { withContentlayer } from "next-contentlayer"
+import path from "path"
+
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+  turbopack: {
+    resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
+  },
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname);
+    return config;
+  },
+}
+
+export default withContentlayer(nextConfig)
+```
+
+**Penjelasan:**
+
+* Alias `@` → root project directory.
+* Integrasi `withContentlayer` wajib untuk Contentlayer berjalan dengan benar dalam Next.js.
+
+---
+
+### ⚠️ Catatan Penting
+
+* ❌ **Jangan gunakan existing build saat deploy ke Vercel**.
+* 🔄 Ini akan menyebabkan:
+
+  * Modul `.contentlayer/generated` gagal ditemukan
+  * Path alias seperti `@/components/...` error secara random
+  * Build menjadi tidak konsisten akibat cache/partial build
+
+**✅ Solusi:**
+
+* Gunakan **`npx contentlayer build`** dalam script `build`
+* Lakukan deploy dari dashboard Vercel dengan **Clear Build Cache**
+* Atau pastikan command CLI sudah menjalankan urutan yang benar
+
+```bash
+vercel --prod --force
+```
+
+Opsional `--force` untuk mencegah reuse build lama (alternatif dari dashboard).
+Lihat dokumentasi ini [vercel.com/docs](https://vercel.com/docs/cli/deploy#force)
+
+---
+

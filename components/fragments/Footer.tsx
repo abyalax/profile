@@ -32,7 +32,7 @@ const Footer = () => {
         </svg>
       </div>
 
-      <div className="flex justify-center items-center dark:text-white text-gray-800 w-full p-5 dark:bg-black bg-slate-300">
+      <div className="flex justify-center items-center dark:text-white text-gray-800 w-full p-5 dark:bg-[#0a0a0a] bg-slate-300">
         <p>© 2024 <b className="text-green-600">AbyaLaxx</b> All Rights Reserved, Inc</p>
       </div>
     </footer>

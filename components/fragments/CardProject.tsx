@@ -11,13 +11,15 @@ const CardProject = ({ project, className }: { project: Project, className?: str
     return (
         <div onClick={() => push(`/projects/${project.slug}`)} key={project._id} className={`max-w-96 w-fit p-4 lg:mx-3 sm:mx-2 mx-1 rounded-xl flex flex-col shadow-xl dark:shadow-yellow-400 shadow-blue-400 hover:transform hover:scale-105 duration-300 ${className}`}>
             <div className="cursor-pointer flex justify-center items-start flex-col">
-                {project.image ? (
-                    <Image alt="" width={400} height={200} src={project.image} className="rounded-md " />
-                ) : (
-                    <div className="flex justify-center items-center w-full h-full rounded-md bg-slate-300">
-                        <h2>Image Preview Not Available</h2>
-                    </div>
-                )}
+                <div className="w-full h-[200px]">
+                    {project.image ? (
+                        <Image alt="" width={400} height={200} src={project.image} className="rounded-md" />
+                    ) : (
+                        <div className="flex justify-center items-center w-full h-full rounded-md bg-slate-300 dark:bg-gray-500">
+                            <h2>Image Preview Not Available</h2>
+                        </div>
+                    )}
+                </div>
 
                 <div className="w-full h-1/2 text-wrap">
                     <h2 className="dark:text-white text-gray-900 text-center text-lg mt-2">{project.title}</h2>

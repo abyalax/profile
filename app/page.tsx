@@ -1,19 +1,12 @@
-import Navbar from "@/components/fragments/Navbar";
-import LandingPage from "@/components/pages/landing-page";
+import { PageLanding } from "./_components/page-landing";
 import { config } from "@/utils/config";
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Abya's Profile",
   description: "Explore Abya's personal website showcasing development projects, technical blogs, and more.",
   authors: [{ name: "Abya Lacks", url: config.base_url }],
-  keywords: [
-    "Profile Developer",
-    "Personal Website",
-    "Fullstack Developer",
-    "Abya Lacks",
-    "Software Engineer Portfolio"
-  ],
+  keywords: ["Profile Developer", "Personal Website", "Fullstack Developer", "Abya Lacks", "Software Engineer Portfolio"],
   creator: "Abya Lacks",
   publisher: "Abya Lacks",
   robots: {
@@ -52,14 +45,8 @@ export const metadata: Metadata = {
     creator: "@abya_dev",
     images: ["/profile/profile-2.png"],
   },
-}
+};
 
-export default function Home() {
-
-  return (
-    <section className="dark:text-gray-700 dark:bg-[#0a0a0a] text-gray-900 bg-slate-100">
-      <Navbar />
-      <LandingPage />
-    </section>
-  );
+export default function Page() {
+  return <PageLanding />;
 }

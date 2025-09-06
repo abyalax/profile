@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Toaster from "@/components/ui/Toaster";
-import Footer from "@/components/fragments/Footer";
 import { config } from "@/utils/config";
 import Theme from "@/provider/theme";
+import { Navbar } from "./_components/navbar";
+import { Footer } from "./_components/footer";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,16 +21,23 @@ export const metadata: Metadata = {
   title: "Abya's Profile",
   description: "Developer Profile",
   metadataBase: new URL(config.base_url),
+  authors: [{ name: "Abya Lacks", url: config.base_url }],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <Head>
+        <link rel="icon" href="/a.svg" type="image/svg+xml" />
+      </Head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased `}>
         <Theme>
           <Toaster />
-          {children}
-          <Footer />
+          <section className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+            <Navbar />
+            {children}
+            <Footer />
+          </section>
         </Theme>
       </body>
     </html>

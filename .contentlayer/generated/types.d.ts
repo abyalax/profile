@@ -41,6 +41,8 @@ export type Project = {
   description: string
   /** The techstack of the project */
   techstack: string[]
+  /** The badges of the techstack */
+  badges: string[]
   /** The url github of the project */
   urlgithub?: string | undefined
   /** The url web demo of the project */

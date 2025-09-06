@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     const project = allProjects.find(e => e.slug === slug) as Project;
 
     return (
-        <main className="w-full dark:text-white text-slate-900">
+        <main className="w-full dark:text-white text-slate-900 pt-11">
             <h2 className=" text-3xl">{project.title}</h2>
             <Date date={project.date} className="text-xs" />
             <div className="p-4 w-full">

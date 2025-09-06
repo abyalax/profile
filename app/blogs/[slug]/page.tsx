@@ -15,13 +15,17 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     )
 
     return (
-        <div className="pb-12">
-            <h1>{blog.title}</h1>
-            <p>{blog.description}</p>
-            <Date date={blog.date} />
-            <Suspense fallback={<div>Loading...</div>}>
-                <MDXContent code={blog.body.code} />
-            </Suspense>
-        </div>
+        <article className="pt-20 px-4 sm:px-6 lg:px-8 pb-10 bg-[var(--bg-primary)] text-[var(--text-primary)]">
+            <header className="max-w-3xl mx-auto mb-8">
+                <h1 className="text-3xl md:text-4xl font-bold leading-tight">{blog.title}</h1>
+                <p className="text-[var(--text-secondary)] mt-2">{blog.description}</p>
+                <Date date={blog.date} className="block mt-2 text-xs text-[var(--text-secondary)]" />
+            </header>
+            <section className="max-w-3xl mx-auto">
+                <Suspense fallback={<div>Loading...</div>}>
+                    <MDXContent code={blog.body.code} />
+                </Suspense>
+            </section>
+        </article>
     )
 }

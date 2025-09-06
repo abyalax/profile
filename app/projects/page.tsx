@@ -1,21 +1,21 @@
-import ProjectPage from "@/components/pages/projects-page";
-import { config } from "@/utils/config";
-import { Metadata } from "next";
+import { PageProjects } from '@/app/projects/_components/projects-page';
+import { config } from '@/utils/config';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Abya's Projects",
   description: "Explore Abya's portfolio projects, technical blogs, and more.",
-  authors: [{ name: "Abya Lacks", url: config.base_url }],
+  authors: [{ name: 'Abya Lacks', url: config.base_url }],
   openGraph: {
     title: "Abya's Projects",
-    description: "Discover innovative web and software development projects by Abya.",
+    description: 'Discover innovative web and software development projects by Abya.',
     url: config.base_url,
     siteName: "Abya's Portfolio",
-    type: "website",
-    locale: "id_ID",
+    type: 'website',
+    locale: 'id_ID',
     images: [
       {
-        url: "/profile/profile-2.png",
+        url: '/profile/profile-2.png',
         width: 1200,
         height: 630,
         alt: "Abya's Portfolio Preview",
@@ -23,17 +23,15 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: "Abya's Projects",
-    description: "Software engineer, web developer, and digital creator. Explore my work.",
-    site: "@abya_dev",
-    creator: "@abya_dev",
-    images: ["/profile/profile-2.png"],
+    description: 'Software engineer, web developer, and digital creator. Explore my work.',
+    site: '@abya_dev',
+    creator: '@abya_dev',
+    images: ['/profile/profile-2.png'],
   },
-}
+};
 
 export default function Page() {
-    return (
-        <ProjectPage />
-    )
+  return <PageProjects />;
 }
